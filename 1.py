@@ -126,9 +126,11 @@ class ai_only_get():
         words = [w.lower() for w in re.findall(r"[a-zA-Z]+", m.group(1))]
         categories = {
             "fruit": {"lemon","grape","mango","banana","apple","pear","peach",
-                      "orange","cherry","strawberry","kiwi","melon","plum"},
+                    "orange","cherry","strawberry","kiwi","melon","plum"},
             "vehicle": {"bicycle","tram","train","scooter","car","bus","taxi",
                         "motorcycle","truck","boat","plane","ferry"},
+            "instrument": {"piano","trumpet","violin","flute","guitar","drum",
+                        "cello","saxophone","clarinet","harp"},
         }
         def cat(w):
             for c, s in categories.items():
@@ -192,6 +194,8 @@ class ai_only_get():
             return "shadow"
         if "城市" in text and "房子" in text and "山" in text:
             return "map"
+        if "越洗越脏" in text or ("wash" in text and "dirty" in text):
+            return "water"
         return ""
 
     SOLVERS = {
@@ -316,7 +320,7 @@ class ai_only_get():
         if do_sign:
             sig = self.sign(
                 name="human",
-                message="能人智力发力了 进来了 进来了",
+                message="能人智力发力了 进来了 进来了 关注B站 超坏星头目喵",
                 model="能人",
                 city="earth",
                 local_time=time.strftime("%Y-%m-%dT%H:%M:%S%z"),
